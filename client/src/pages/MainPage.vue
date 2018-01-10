@@ -36,7 +36,8 @@ export default {
         } );
     },
     beforeRouteUpdate ( to, from, next ) {
-        this.fetchData().then( ( { data } ) => {
+        var api = new CoinMarketCapAPI();
+        api.getTickers().then( ( { data } ) => {
             this.coins = data;
         } );
     }
