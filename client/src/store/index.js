@@ -11,12 +11,12 @@ Vue.use( Vuex );
 
 const debug = process.env.NODE_ENV !== 'production';
 
-var storedState = JSON.parse( getItem( '__cointracker__' ) || '{}' );
+var state = JSON.parse( getItem( '__cointracker__' ) || '{ "coins": { "last_updated": null, "items": {} } }' );
 
 export default new Vuex.Store( {
-	'state': storedState || { 'coins': { 'last_updated': null, 'items': {} } };,
-	actions,
-	mutations,
-	getters,
-	'strict': debug
+    state,
+    actions,
+    mutations,
+    getters,
+    'strict': debug
 } );

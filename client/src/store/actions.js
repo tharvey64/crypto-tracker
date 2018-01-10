@@ -1,17 +1,23 @@
-import * as types from '@/store/mutations-types';
-
-import { CoinMarketCapAPI } from './api/coinmarketcap';
+import * as types from '@/store/mutation-types';
+import { CoinMarketCapAPI } from '@/api/coinmarketcap';
 
 const coinMarketCapApi = new CoinMarketCapAPI();
 
-export const getCoins = ( { commit, state }, options ) => {
-	// TODO: How to handle requests to load results with `limit` and/or `start`?
-	var last_updated = state.coins.last_updated;
-	if ( !state.coins.items || !last_updated || last_updated + 300000 >= +( new Date() ) ){		
-		coinMarketCapApi.getTickers( options ).then( ( { data }) => {
-			// convert array to object
-			// easy with lodash
-			commit( types.ADD_COINS, data );
-		} );
-	}
+export const loadCoins = ( { commit, state }, options ) => {
+    // TODO: How to handle requests to load results with `limit` and/or `start`?
+    return new Promise( ( resolve, reject ) => {
+        var lastUpdated = state.coins.last_updated;
+        if ( !Object.keys( state.coins.items ).length || !lastUpdated || lastUpdated + 300000 <= +( new Date() ) ) {
+            coinMarketCapApi.getTickers( options || {} ).catch( reject ).then( ( { data } ) => {
+                var items = {};
+                data.forEach( ( element, index, collection ) => {
+                    items[ element.rank ] = element;
+                } );
+                commit( types.LOAD_COINS, items );
+                resolve();
+            } );
+        } else {
+            resolve();
+        }
+    } );
 };

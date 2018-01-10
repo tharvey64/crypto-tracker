@@ -1,1 +1,1 @@
-export const ADD_COINS = 'ADD_COINS';
+export const LOAD_COINS = 'LOAD_COINS';
