@@ -12,6 +12,7 @@ export const getCoins = ( { commit, state }, options ) => {
 	
 	if ( !state.coins ){		
 		coinMarketCapApi.getTickers( options ).then( ( { data }) => {
+			// convert array to object
 			commit( types.ADD_COINS, data );
 		} );
 	}
