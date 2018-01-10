@@ -1,13 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import iView from 'iview';
 import MainPage from '@/pages/MainPage';
-import 'iview/dist/styles/iview.css';
 
-Vue.use(Router);
-Vue.use(iView);
+Vue.use( Router );
 
-export default new Router({
+export default new Router( {
     routes: [
         {
             path: '/',
@@ -15,4 +12,4 @@ export default new Router({
             component: MainPage
         }
     ]
-});
+} );
