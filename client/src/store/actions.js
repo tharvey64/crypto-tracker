@@ -5,14 +5,12 @@ import { CoinMarketCapAPI } from './api/coinmarketcap';
 const coinMarketCapApi = new CoinMarketCapAPI();
 
 export const getCoins = ( { commit, state }, options ) => {
-	// TODO: Add logic to determine if the coins need to be loaded
-	// 		- if the data has expired
-	// 		- if there are no coins
 	// TODO: How to handle requests to load results with `limit` and/or `start`?
 	var last_updated = state.coins.last_updated;
-	if ( !last_updated || last_updated + 300000 >= +( new Date() ) ){		
+	if ( !state.coins.items || !last_updated || last_updated + 300000 >= +( new Date() ) ){		
 		coinMarketCapApi.getTickers( options ).then( ( { data }) => {
 			// convert array to object
+			// easy with lodash
 			commit( types.ADD_COINS, data );
 		} );
 	}
