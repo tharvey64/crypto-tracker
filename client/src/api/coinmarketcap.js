@@ -2,6 +2,8 @@
 
 import axios from 'axios';
 
+import getTickersData from '@/api/getTickers';
+
 // DOCS: https://coinmarketcap.com/api/
 
 // Limits:
@@ -24,8 +26,8 @@ var CoinMarketCapAPI = class {
         *       "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN",
         *       "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
         */
-
-        return axios.get( `${ this.base }/ticker/`, options || {} );
+        return new Promise( ( resolve, reject ) => resolve( getTickersData ) );
+        // return axios.get( `${ this.base }/ticker/`, options || {} );
     };
 
     getTicker ( options ) {
