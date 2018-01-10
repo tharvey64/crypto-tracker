@@ -9,7 +9,6 @@ export const getCoins = ( { commit, state }, options ) => {
 	// 		- if the data has expired
 	// 		- if there are no coins
 	// TODO: How to handle requests to load results with `limit` and/or `start`?
-	
 	if ( !state.coins ){		
 		coinMarketCapApi.getTickers( options ).then( ( { data }) => {
 			// convert array to object

@@ -11,8 +11,10 @@ Vue.use( Vuex );
 
 const debug = process.env.NODE_ENV !== 'production';
 
+var storedState = JSON.parse( getItem( '__cointracker__' ) || '{}' );
+
 export default new Vuex.Store( {
-	'state': getItem( '__cointracker__' ) || { 'coins': [] };,
+	'state': storedState || { 'coins': { 'last_updated': null, 'items': {} } };,
 	actions,
 	mutations,
 	getters,
