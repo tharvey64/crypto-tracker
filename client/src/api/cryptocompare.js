@@ -1,4 +1,6 @@
-import ajax from 'utils';
+'use strict';
+
+import axios from 'axios';
 
 // https://www.cryptocompare.com/api
 

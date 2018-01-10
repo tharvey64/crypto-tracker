@@ -8,7 +8,7 @@
                 </div>
             </Header>
             <Content>
-                <CoinCollection></CoinCollection>
+                <CoinCollection :coins="coins"></CoinCollection>
             </Content>
             <Footer>Footer</Footer>
         </Layout>
@@ -17,13 +17,29 @@
 
 <script>
 import CoinCollection from '@/components/CoinCollection';
+import { CoinMarketCapAPI } from '@/api/coinmarketcap';
 
 export default {
     name: 'MainPage',
     data () {
-        return {};
+        return {
+            'coins': []
+        };
     },
-    components: { CoinCollection }
+    components: { CoinCollection },
+    beforeRouteEnter ( to, from, next ) {
+        var api = new CoinMarketCapAPI();
+        api.getTickers().then( ( { data } ) => {
+            next( ( vm ) => {
+                vm.coins = data;
+            } );
+        } );
+    },
+    beforeRouteUpdate ( to, from, next ) {
+        this.fetchData().then( ( { data } ) => {
+            this.coins = data;
+        } );
+    }
 };
 </script>
 
