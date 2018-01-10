@@ -24,6 +24,7 @@ module.exports = {
     'semi': ['error', 'always'],
     "indent": ["error", 4],
     "space-in-parens": ["error", "always"],
-    "template-curly-spacing": ["error", "always"]
+    "template-curly-spacing": ["error", "always"],
+    // "padded-blocks": ["error", "always"]
   }
 }

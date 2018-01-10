@@ -1,0 +1,2 @@
+export const LOAD_COINS = 'LOAD_COINS';
+export const IS_WAITING_TO_LOAD_COINS = 'IS_WAITING_TO_LOAD_COINS';

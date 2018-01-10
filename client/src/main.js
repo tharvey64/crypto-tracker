@@ -3,20 +3,19 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
-
-import { CoinMarketCapAPI } from './api/coinmarketcap';
 
 Vue.use( iView );
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
-global.myView = new Vue( {
+new Vue( {
     el: '#app',
     router,
+    store,
     template: '<App/>',
-    coins: new CoinMarketCapAPI(),
     components: { App }
 } );

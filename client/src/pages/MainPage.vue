@@ -17,28 +17,23 @@
 
 <script>
 import CoinCollection from '@/components/CoinCollection';
-import { CoinMarketCapAPI } from '@/api/coinmarketcap';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'MainPage',
-    data () {
-        return {
-            'coins': []
-        };
-    },
     components: { CoinCollection },
     beforeRouteEnter ( to, from, next ) {
-        var api = new CoinMarketCapAPI();
-        api.getTickers().then( ( { data } ) => {
-            next( ( vm ) => {
-                vm.coins = data;
-            } );
+        next( ( vm ) => {
+            vm.$store.dispatch( 'loadCoins' );
         } );
     },
     beforeRouteUpdate ( to, from, next ) {
-        this.fetchData().then( ( { data } ) => {
-            this.coins = data;
-        } );
+        this.$store.dispatch( 'loadCoins' ).catch( next ).then( next );
+    },
+    computed: {
+        ...mapGetters( {
+            'coins': 'getCoins'
+        } )
     }
 };
 </script>
