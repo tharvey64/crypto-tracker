@@ -9,11 +9,15 @@ import axios from 'axios';
 // Endpoints update every 5 minutes.
 
 var CoinMarketCapAPI = class {
+
     constructor () {
+
         this.base = 'https://api.coinmarketcap.com/v1';
+
     };
 
     getTickers ( options ) {
+
         /* Optional parameters:
         * (int) `start` - return results from rank [start] and above
         * (int) `limit` - return a maximum of [limit] results (default is 100, use 0 to return all results)
@@ -24,10 +28,13 @@ var CoinMarketCapAPI = class {
         *       "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN",
         *       "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
         */
+
         return axios.get( `${ this.base }/ticker/`, options || {} );
+
     };
 
     getTicker ( options ) {
+
         /* Optional parameters:
         * (string) `convert` - return price, 24h volume, and market cap in terms of another currency.
         *    Valid values are:
@@ -38,9 +45,11 @@ var CoinMarketCapAPI = class {
         */
 
         return axios.get( `${ this.base }/ticker/${ options.id }/`, options || {} );
+
     };
 
     getGlobal ( options ) {
+
         /* Optional parameters:
         * (string) `convert` - return 24h volume, and market cap in terms of another currency.
         *    Valid values are:
@@ -51,7 +60,9 @@ var CoinMarketCapAPI = class {
         */
 
         return axios.get( `${ this.base }/global/`, options || {} );
+
     };
+
 };
 
 export { CoinMarketCapAPI };

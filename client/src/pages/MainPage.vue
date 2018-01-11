@@ -23,17 +23,25 @@ export default {
     name: 'MainPage',
     components: { CoinCollection },
     beforeRouteEnter ( to, from, next ) {
+
         next( ( vm ) => {
+
             vm.$store.dispatch( 'loadCoins' );
+
         } );
+
     },
     beforeRouteUpdate ( to, from, next ) {
+
         this.$store.dispatch( 'loadCoins' ).catch( next ).then( next );
+
     },
     computed: {
+
         ...mapGetters( {
             'coins': 'getCoins'
         } )
+
     }
 };
 </script>

@@ -16,6 +16,7 @@ export default {
         'coins': Array
     },
     data () {
+
         return {
             'columns': [
                 {
@@ -80,6 +81,7 @@ export default {
                 }
             ]
         };
+
     }
 };
 </script>

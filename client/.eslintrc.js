@@ -25,6 +25,6 @@ module.exports = {
     "indent": ["error", 4],
     "space-in-parens": ["error", "always"],
     "template-curly-spacing": ["error", "always"],
-    // "padded-blocks": ["error", "always"]
+    "padded-blocks": ["error", "always"]
   }
 }
