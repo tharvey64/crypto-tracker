@@ -8,7 +8,7 @@
                 </div>
             </Header>
             <Content>
-                <CoinCollection :coins="coins"></CoinCollection>
+                <CoinCollectionTable :coins="coins"></CoinCollectionTable>
             </Content>
             <Footer>Footer</Footer>
         </Layout>
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import CoinCollection from '@/components/CoinCollection';
+import CoinCollectionTable from '@/components/CoinCollectionTable';
 import { mapGetters } from 'vuex';
 
 export default {
     name: 'MainPage',
-    components: { CoinCollection },
+    components: { CoinCollectionTable },
     beforeRouteEnter ( to, from, next ) {
 
         next( ( vm ) => {
